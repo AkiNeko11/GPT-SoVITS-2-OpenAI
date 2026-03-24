@@ -1,0 +1,25 @@
+# GPT-SoVITS Voice Configuration
+# 每个 voice 条目定义模型路径和参考音频，路径支持相对路径（基于项目根目录）或绝对路径。
+#
+# 使用示例 (curl):
+#   curl -X POST http://localhost:5000/v1/audio/speech \
+#     -H "Content-Type: application/json" \
+#     -d '{"input": "你好，世界！", "voice": "default", "response_format": "mp3"}'
+
+voices:
+  default:
+    models:
+      gpt_model_path: ./GPT_weights/v1_trial-e40.ckpt
+      sovits_model_path: ./SoVITS_weights/v1_trial_e20_s480.pth
+    refer:
+      refer_wav_path: ./tools/denoised/output/reference.wav
+      prompt_text: ""
+
+  # 可添加更多声音配置，例如:
+  # alice:
+  #   models:
+  #     gpt_model_path: ./GPT_weights/alice-e30.ckpt
+  #     sovits_model_path: ./SoVITS_weights/alice_e15_s360.pth
+  #   refer:
+  #     refer_wav_path: ./tools/denoised/output/alice_ref.wav
+  #     prompt_text: "这是一段参考文本"
